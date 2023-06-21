@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car object example</title>
+    <style>
+        p {
+            border: 3px solid rgb(185, 231, 174);
+            padding: 10px;
+            margin: 10px;
+            color: rgb(84, 75, 165);
+        }
+    </style>
+</head>
+<body>
+    <p id="carInfo"></p>
+    <p id="carTime"></p>
+    <p id="carAge"></p>
+  
+    <script>
+      var car = {
+        manufacturer: "Toyota",
+        model: "Camry",
+        year: 2019,
+        averageSpeed: 80,
+        getInfo: function() {
+            var info = "Производитель: " + this.manufacturer + "\n" +
+                       "Модель: " + this.model + "\n" +
+                       "Год выпуска: " + this.year + "\n" +
+                       "Средняя скорость: " + this.averageSpeed + " kм/ч";
+            alert(info);
+        },
+        getTime: function(distance) {
+            if (distance < 0) {
+                document.getElementById("carTime").innerHTML = "Расстояние не может быть отрицательным";
+                return;
+            }
+            var time = distance / this.averageSpeed;
+            var rest = Math.floor(time / 4);
+            time += rest;
+            document.getElementById("carTime").innerHTML = "Время в пути на дистанции " +  distance  +  " км = "  + time +  "часов";
+        },
+        getAge: function() {
+            var currentDate = new Date();
+            var currentYear = currentDate.getFullYear();
+            var age = currentYear - this.year;
+            document.getElementById("carAge").innerHTML = "Возраст машины: " + age + " года";
+        }
+      };
+  
+      car.getInfo();
+      car.getTime(400);
+      car.getAge();
+    </script>
+</body>
+</html>
